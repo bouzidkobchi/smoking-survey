@@ -1,37 +1,38 @@
-import { type User, type InsertUser } from "@shared/schema";
+import { type Survey, type InsertSurvey } from "@shared/schema";
 import { randomUUID } from "crypto";
 
-// modify the interface with any CRUD methods
-// you might need
-
 export interface IStorage {
-  getUser(id: string): Promise<User | undefined>;
-  getUserByUsername(username: string): Promise<User | undefined>;
-  createUser(user: InsertUser): Promise<User>;
+  createSurvey(survey: InsertSurvey): Promise<Survey>;
+  getAllSurveys(): Promise<Survey[]>;
+  getSurveyById(id: string): Promise<Survey | undefined>;
 }
 
 export class MemStorage implements IStorage {
-  private users: Map<string, User>;
+  private surveys: Map<string, Survey>;
 
   constructor() {
-    this.users = new Map();
+    this.surveys = new Map();
   }
 
-  async getUser(id: string): Promise<User | undefined> {
-    return this.users.get(id);
+  async createSurvey(insertSurvey: InsertSurvey): Promise<Survey> {
+    const id = randomUUID();
+    const survey: Survey = {
+      ...insertSurvey,
+      id,
+      createdAt: new Date(),
+    };
+    this.surveys.set(id, survey);
+    return survey;
   }
 
-  async getUserByUsername(username: string): Promise<User | undefined> {
-    return Array.from(this.users.values()).find(
-      (user) => user.username === username,
+  async getAllSurveys(): Promise<Survey[]> {
+    return Array.from(this.surveys.values()).sort(
+      (a, b) => b.createdAt.getTime() - a.createdAt.getTime()
     );
   }
 
-  async createUser(insertUser: InsertUser): Promise<User> {
-    const id = randomUUID();
-    const user: User = { ...insertUser, id };
-    this.users.set(id, user);
-    return user;
+  async getSurveyById(id: string): Promise<Survey | undefined> {
+    return this.surveys.get(id);
   }
 }
 
