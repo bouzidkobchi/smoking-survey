@@ -46,7 +46,7 @@ app.listen(PORT, '0.0.0.0', () => {
             <div className="flex items-center justify-center h-9 w-9 rounded-md bg-primary">
               <Terminal className="h-5 w-5 text-primary-foreground" />
             </div>
-            <span className="font-semibold text-lg text-foreground">Express Server</span>
+            <span className="font-semibold text-lg text-foreground">Smoking Surveys</span>
           </div>
           <ThemeToggle />
         </div>
