@@ -1,0 +1,168 @@
+H. LIM:
+الجنس: ☐ ذكر ☐ أنثى
+2. العمر: ___ سنة
+
+3. الحالة الاجتماعية: ☐ أعزب ☐ متزوج ☐ مطلق ☐ أرمل
+
+4. المستوى التعليمي: ☐ ابتدائي ☐ متوسط ☐ ثانوي ☐ جامعي
+
+5. المهنة: _____
+
+6. مكان الإقامة: ☐ حضري ☐ ريفي
+
+7. هل تدخن حاليًا؟ ☐ نعم ☐ لا (إن كانت الإجابة لا، انتقل إلى المحور 6)
+
+8. في أي عمر بدأت التدخين؟ ___ سنة
+
+9. ما نوع التبغ الذي تستهلكه عادة؟
+☐ سجائر ☐ نرجيلة ☐ سيجار ☐ تبغ ملفوف يدويًا
+
+10. كم عدد السجائر التي تدخنها يوميًا؟
+☐ أقل من 5 ☐ 5–10 ☐ 11–20 ☐ أكثر من 20
+
+11. هل تدخن يوميًا أم بشكل متقطع؟
+☐ يوميًا ☐ أحيانًا فقط
+
+12. كم تدوم سيجارتك الأولى بعد الاستيقاظ؟
+☐ أقل من 5 دقائق ☐ من 5 إلى 30 دقيقة ☐ أكثر من 30 دقيقة
+
+13. هل تدخن في أماكن مغلقة (المنزل، العمل)؟ ☐ نعم ☐ لا
+
+14. كم مرة حاولت التوقف عن التدخين؟
+☐ لم أحاول ☐ مرة واحدة ☐ أكثر من مرة
+
+15. ما هو أطول مدة توقفت فيها عن التدخين؟ 
+
+16. ما السبب الذي دفعك إلى البدء في التدخين؟
+☐ فضول ☐ ضغط الأصدقاء ☐ توتر نفسي ☐ متعة ☐ أخرى: ____
+
+17. هل تعتبر نفسك مدمنًا على التدخين؟ ☐ نعم ☐ لا
+
+18. هل تعلم أن التدخين يسبب أمراضًا خطيرة؟ ☐ نعم ☐ لا
+
+19. ما أكثر الأمراض التي تعرف أنها ناتجة عن التدخين؟
+☐ السرطان ☐ أمراض القلب ☐ أمراض الرئة ☐ العقم ☐ أخرى ___
+
+20. من أين تحصل على معلوماتك عن التدخين؟
+☐ الإنترنت ☐ الطبيب ☐ الإعلام ☐ الأصدقاء ☐ المدرسة
+
+هل تعاني من سعال مزمن؟ ☐ نعم ☐ لا
+
+22. هل تشعر بضيق في التنفس أو تعب متكرر؟ ☐ نعم ☐ لا
+
+23. هل زرت طبيبًا بسبب مشاكل متعلقة بالتدخين؟ ☐ نعم ☐ لا
+
+24. هل توجد حالات مرضية خطيرة (سرطان، أمراض قلب) في عائلتك مرتبطة بالتدخين؟ ☐ نعم ☐ لا
+
+25. هل تفكر في الإقلاع عن التدخين؟
+☐ نعم خلال الشهر القادم
+☐ نعم خلال السنة القادمة
+☐ لا أفكر حاليًا
+
+26. ما هو أكبر عائق يمنعك من الإقلاع؟
+☐ التوتر ☐ الرفقة ☐ الإدمان ☐ الخوف من الفشل ☐ أخرى ___
+
+27. ما الطريقة التي تفضلها للإقلاع؟
+☐ بمفردي ☐ بمساعدة طبية ☐ باستخدام لصقات أو أدوية ☐ من خلال الدعم النفسي
+
+28. هل تود المشاركة في برنامج لمساعدتك على التوقف عن التدخين؟ ☐ نعم ☐ لا
+. منذ متى أقلعت عن التدخين؟ ____
+
+30. ما السبب الذي دفعك للإقلاع؟
+☐ مشكلة صحية ☐ نصيحة طبيب ☐ رغبة شخصية ☐ أسباب مالية ☐ أخرى ___
+
+31. كيف كانت تجربتك أثناء التوقف؟
+☐ سهلة ☐ متوسطة الصعوبة ☐ صعبة جدًا
+
+32. هل تعرضت لانتكاسة؟ ☐ نعم ☐ لا
+
+33. ما النصيحة التي تقدمها للمدخنين الراغبين في التوقف؟
+
+34. ما رأيك في حملات التوعية ضد التدخين في بلدك؟
+
+35. ما الاقتراحات التي تراها فعالة لمساعدة المدخنين على الإقلاع؟
+
+1. Gender: ☐ Male ☐ Female
+
+2. Age: ___ years
+
+3. Marital status: ☐ Single ☐ Married ☐ Divorced ☐ Widowed
+
+4. Educational level: ☐ Primary ☐ Middle school ☐ High school ☐ University
+
+5. Occupation: _
+
+6. Place of residence: ☐ Urban ☐ Rural
+
+7. Do you currently smoke? ☐ Yes ☐ No (If “No,” proceed to Section 6)
+
+8. At what age did you start smoking? ___ years
+
+9. What type of tobacco do you usually consume?
+☐ Cigarettes ☐ Hookah (Shisha) ☐ Cigar ☐ Hand-rolled tobacco
+
+10. How many cigarettes do you smoke per day?
+☐ Less than 5 ☐ 5–10 ☐ 11–20 ☐ More than 20
+
+11. Do you smoke daily or occasionally?
+☐ Daily ☐ Occasionally
+
+12. How soon after waking up do you smoke your first cigarette?
+☐ Within 5 minutes ☐ 5–30 minutes ☐ More than 30 minutes
+
+13. Do you smoke in enclosed spaces (home, workplace)? ☐ Yes ☐ No
+
+14. How many times have you tried to quit smoking?
+☐ Never ☐ Once ☐ More than once
+
+15. What was the longest period you remained smoke-free? _
+
+16. What was the main reason you started smoking?
+☐ Curiosity ☐ Peer pressure ☐ Psychological stress ☐ Pleasure ☐ Other: _
+
+17. Do you consider yourself addicted to smoking? ☐ Yes ☐ No
+
+18. Are you aware that smoking causes serious diseases? ☐ Yes ☐ No
+
+19. Which of the following diseases do you associate with smoking?
+☐ Cancer ☐ Cardiovascular diseases ☐ Respiratory diseases ☐ Infertility ☐ Other: _
+
+20. What is your main source of information about smoking?
+☐ Internet ☐ Physician ☐ Media ☐ Friends ☐ School
+
+21. Do you suffer from a chronic cough? ☐ Yes ☐ No
+
+22. Do you experience shortness of breath or frequent fatigue? ☐ Yes ☐ No
+
+23. Have you ever visited a doctor for smoking-related health issues? ☐ Yes ☐ No
+
+24. Are there any serious illnesses (cancer, heart disease) in your family related to smoking? ☐ Yes ☐ No
+
+25. Are you considering quitting smoking?
+☐ Yes, within the next month
+☐ Yes, within the next year
+☐ Not considering it currently
+
+26. What is the main barrier preventing you from quitting?
+☐ Stress ☐ Social environment ☐ Addiction ☐ Fear of failure ☐ Other: 
+
+27. What method would you prefer to quit smoking?
+☐ On my own ☐ With medical assistance ☐ Using nicotine patches or medication ☐ Through psychological support
+
+28. Would you be interested in participating in a smoking cessation program? ☐ Yes ☐ No
+
+29. How long has it been since you quit smoking? _
+
+30. What motivated you to quit?
+☐ Health problem ☐ Doctor’s advice ☐ Personal decision ☐ Financial reasons ☐ Other: _
+
+31. How would you describe your experience during cessation?
+☐ Easy ☐ Moderately difficult ☐ Very difficult
+
+32. Have you experienced a relapse? ☐ Yes ☐ No
+
+33. What advice would you give to smokers who wish to quit?
+
+34. What is your opinion about anti-smoking awareness campaigns in your country?
+
+35. What suggestions do you consider most effective in helping smokers quit?
