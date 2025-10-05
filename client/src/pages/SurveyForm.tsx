@@ -15,7 +15,15 @@ import { apiRequest } from "@/lib/queryClient";
 import { ClipboardList, Globe } from "lucide-react";
 import { insertSurveySchema } from "@shared/schema";
 
-const surveyFormSchema = insertSurveySchema;
+const surveyFormSchema = insertSurveySchema.extend({
+  gender: z.string().min(1, "Gender is required"),
+  age: z.number().min(1, "Age is required").max(120, "Please enter a valid age"),
+  maritalStatus: z.string().min(1, "Marital status is required"),
+  educationLevel: z.string().min(1, "Education level is required"),
+  occupation: z.string().min(1, "Occupation is required"),
+  residence: z.string().min(1, "Residence type is required"),
+  informationSource: z.string().min(1, "Information source is required"),
+});
 
 type SurveyFormValues = z.infer<typeof surveyFormSchema>;
 
@@ -631,11 +639,11 @@ export default function SurveyForm() {
                               data-testid="radio-indoors"
                             >
                               <div className="flex items-center space-x-2">
-                                <RadioGroupItem value="true" id="indoors-yes" />
+                                <RadioGroupItem value="true" id="indoors-yes" data-testid="radio-indoors-yes" />
                                 <label htmlFor="indoors-yes" className="cursor-pointer">{text.yes}</label>
                               </div>
                               <div className="flex items-center space-x-2">
-                                <RadioGroupItem value="false" id="indoors-no" />
+                                <RadioGroupItem value="false" id="indoors-no" data-testid="radio-indoors-no" />
                                 <label htmlFor="indoors-no" className="cursor-pointer">{text.no}</label>
                               </div>
                             </RadioGroup>
@@ -741,11 +749,11 @@ export default function SurveyForm() {
                               data-testid="radio-considers-addicted"
                             >
                               <div className="flex items-center space-x-2">
-                                <RadioGroupItem value="true" id="addicted-yes" />
+                                <RadioGroupItem value="true" id="addicted-yes" data-testid="radio-addicted-yes" />
                                 <label htmlFor="addicted-yes" className="cursor-pointer">{text.yes}</label>
                               </div>
                               <div className="flex items-center space-x-2">
-                                <RadioGroupItem value="false" id="addicted-no" />
+                                <RadioGroupItem value="false" id="addicted-no" data-testid="radio-addicted-no" />
                                 <label htmlFor="addicted-no" className="cursor-pointer">{text.no}</label>
                               </div>
                             </RadioGroup>
@@ -776,11 +784,11 @@ export default function SurveyForm() {
                           data-testid="radio-awareness"
                         >
                           <div className="flex items-center space-x-2">
-                            <RadioGroupItem value="true" id="aware-yes" />
+                            <RadioGroupItem value="true" id="aware-yes" data-testid="radio-aware-yes" />
                             <label htmlFor="aware-yes" className="cursor-pointer">{text.yes}</label>
                           </div>
                           <div className="flex items-center space-x-2">
-                            <RadioGroupItem value="false" id="aware-no" />
+                            <RadioGroupItem value="false" id="aware-no" data-testid="radio-aware-no" />
                             <label htmlFor="aware-no" className="cursor-pointer">{text.no}</label>
                           </div>
                         </RadioGroup>
@@ -897,11 +905,11 @@ export default function SurveyForm() {
                           data-testid="radio-chronic-cough"
                         >
                           <div className="flex items-center space-x-2">
-                            <RadioGroupItem value="true" id="cough-yes" />
+                            <RadioGroupItem value="true" id="cough-yes" data-testid="radio-cough-yes" />
                             <label htmlFor="cough-yes" className="cursor-pointer">{text.yes}</label>
                           </div>
                           <div className="flex items-center space-x-2">
-                            <RadioGroupItem value="false" id="cough-no" />
+                            <RadioGroupItem value="false" id="cough-no" data-testid="radio-cough-no" />
                             <label htmlFor="cough-no" className="cursor-pointer">{text.no}</label>
                           </div>
                         </RadioGroup>
@@ -925,11 +933,11 @@ export default function SurveyForm() {
                           data-testid="radio-breathing"
                         >
                           <div className="flex items-center space-x-2">
-                            <RadioGroupItem value="true" id="breathing-yes" />
+                            <RadioGroupItem value="true" id="breathing-yes" data-testid="radio-breathing-yes" />
                             <label htmlFor="breathing-yes" className="cursor-pointer">{text.yes}</label>
                           </div>
                           <div className="flex items-center space-x-2">
-                            <RadioGroupItem value="false" id="breathing-no" />
+                            <RadioGroupItem value="false" id="breathing-no" data-testid="radio-breathing-no" />
                             <label htmlFor="breathing-no" className="cursor-pointer">{text.no}</label>
                           </div>
                         </RadioGroup>
@@ -953,11 +961,11 @@ export default function SurveyForm() {
                           data-testid="radio-doctor"
                         >
                           <div className="flex items-center space-x-2">
-                            <RadioGroupItem value="true" id="doctor-yes" />
+                            <RadioGroupItem value="true" id="doctor-yes" data-testid="radio-doctor-yes" />
                             <label htmlFor="doctor-yes" className="cursor-pointer">{text.yes}</label>
                           </div>
                           <div className="flex items-center space-x-2">
-                            <RadioGroupItem value="false" id="doctor-no" />
+                            <RadioGroupItem value="false" id="doctor-no" data-testid="radio-doctor-no" />
                             <label htmlFor="doctor-no" className="cursor-pointer">{text.no}</label>
                           </div>
                         </RadioGroup>
@@ -981,11 +989,11 @@ export default function SurveyForm() {
                           data-testid="radio-family-history"
                         >
                           <div className="flex items-center space-x-2">
-                            <RadioGroupItem value="true" id="family-yes" />
+                            <RadioGroupItem value="true" id="family-yes" data-testid="radio-family-yes" />
                             <label htmlFor="family-yes" className="cursor-pointer">{text.yes}</label>
                           </div>
                           <div className="flex items-center space-x-2">
-                            <RadioGroupItem value="false" id="family-no" />
+                            <RadioGroupItem value="false" id="family-no" data-testid="radio-family-no" />
                             <label htmlFor="family-no" className="cursor-pointer">{text.no}</label>
                           </div>
                         </RadioGroup>
@@ -1109,11 +1117,11 @@ export default function SurveyForm() {
                             data-testid="radio-interested-program"
                           >
                             <div className="flex items-center space-x-2">
-                              <RadioGroupItem value="true" id="program-yes" />
+                              <RadioGroupItem value="true" id="program-yes" data-testid="radio-program-yes" />
                               <label htmlFor="program-yes" className="cursor-pointer">{text.yes}</label>
                             </div>
                             <div className="flex items-center space-x-2">
-                              <RadioGroupItem value="false" id="program-no" />
+                              <RadioGroupItem value="false" id="program-no" data-testid="radio-program-no" />
                               <label htmlFor="program-no" className="cursor-pointer">{text.no}</label>
                             </div>
                           </RadioGroup>
@@ -1226,11 +1234,11 @@ export default function SurveyForm() {
                             data-testid="radio-relapse"
                           >
                             <div className="flex items-center space-x-2">
-                              <RadioGroupItem value="true" id="relapse-yes" />
+                              <RadioGroupItem value="true" id="relapse-yes" data-testid="radio-relapse-yes" />
                               <label htmlFor="relapse-yes" className="cursor-pointer">{text.yes}</label>
                             </div>
                             <div className="flex items-center space-x-2">
-                              <RadioGroupItem value="false" id="relapse-no" />
+                              <RadioGroupItem value="false" id="relapse-no" data-testid="radio-relapse-no" />
                               <label htmlFor="relapse-no" className="cursor-pointer">{text.no}</label>
                             </div>
                           </RadioGroup>
