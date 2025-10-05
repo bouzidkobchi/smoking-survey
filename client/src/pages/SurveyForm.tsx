@@ -49,11 +49,8 @@ export default function SurveyForm() {
 
   const submitMutation = useMutation({
     mutationFn: async (data: SurveyFormValues) => {
-      return await apiRequest("/api/surveys", {
-        method: "POST",
-        body: JSON.stringify(data),
-        headers: { "Content-Type": "application/json" },
-      });
+      const res = await apiRequest("POST", "/api/surveys", data);
+      return await res.json();
     },
     onSuccess: () => {
       toast({
