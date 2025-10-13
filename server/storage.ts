@@ -1,7 +1,8 @@
-import sqlite3 from "sqlite3";
-import { open, Database } from "sqlite";
+import { drizzle, PostgresJsDatabase } from "drizzle-orm/postgres-js";
+import postgres from "postgres";
+import { eq, desc } from "drizzle-orm";
 import { randomUUID } from "crypto";
-import { type Survey, type InsertSurvey } from "@shared/schema";
+import { type Survey, type InsertSurvey, surveys } from "@shared/schema";
 
 export interface IStorage {
   createSurvey(survey: InsertSurvey): Promise<Survey>;
@@ -9,154 +10,60 @@ export interface IStorage {
   getSurveyById(id: string): Promise<Survey | undefined>;
 }
 
-export class SQLiteStorage implements IStorage {
-  private db: Database<sqlite3.Database, sqlite3.Statement>;
+export class PostgresStorage implements IStorage {
+  private db: PostgresJsDatabase;
 
-  constructor(dbPath = "./surveys.db") {
-    this.db = null as any;
-    this.init(dbPath);
+  constructor(connectionString: string) {
+    const client = postgres(connectionString);
+    this.db = drizzle(client);
+    
+    // Note: In production, you should use migrations instead of syncing
+    // this.initSchema();
   }
 
-  private async init(dbPath: string) {
-    this.db = await open({
-      filename: dbPath,
-      driver: sqlite3.Database,
-    });
-
-    await this.db.exec(`
-      CREATE TABLE IF NOT EXISTS surveys (
-        id TEXT PRIMARY KEY,
-        gender TEXT NOT NULL,
-        age INTEGER NOT NULL,
-        maritalStatus TEXT NOT NULL,
-        educationLevel TEXT NOT NULL,
-        occupation TEXT NOT NULL,
-        residence TEXT NOT NULL,
-        currentlySmoking BOOLEAN NOT NULL,
-        ageStartedSmoking INTEGER,
-        tobaccoType TEXT,
-        cigarettesPerDay TEXT,
-        smokingFrequency TEXT,
-        firstCigaretteTiming TEXT,
-        smokesIndoors BOOLEAN,
-        quitAttempts TEXT,
-        longestQuitPeriod TEXT,
-        reasonStarted TEXT,
-        reasonStartedOther TEXT,
-        considersAddicted BOOLEAN,
-        awarenessOfDiseases BOOLEAN NOT NULL,
-        diseasesKnown TEXT,
-        diseasesKnownOther TEXT,
-        informationSource TEXT NOT NULL,
-        chronicCough BOOLEAN NOT NULL,
-        breathingIssues BOOLEAN NOT NULL,
-        doctorVisit BOOLEAN NOT NULL,
-        familyHistory BOOLEAN NOT NULL,
-        consideringQuitting TEXT,
-        quitBarrier TEXT,
-        quitBarrierOther TEXT,
-        preferredQuitMethod TEXT,
-        interestedInProgram BOOLEAN,
-        timeSinceQuit TEXT,
-        quitReason TEXT,
-        quitReasonOther TEXT,
-        quitDifficulty TEXT,
-        experiencedRelapse BOOLEAN,
-        adviceForSmokers TEXT,
-        opinionOnCampaigns TEXT,
-        suggestionsForHelp TEXT,
-        createdAt TEXT NOT NULL
-      );
-    `);
-  }
+  // Optional: Initialize schema (use migrations in production)
+  // private async initSchema() {
+  //   // You would use migrations instead in a real application
+  //   // This is just for development/demo purposes
+  // }
 
   async createSurvey(insertSurvey: InsertSurvey): Promise<Survey> {
-    const id = randomUUID();
-    const createdAt = new Date().toISOString();
-
-    const survey: Survey = {
-      id,
-      createdAt: new Date(createdAt),
+    const surveyData = {
       ...insertSurvey,
-
-      // Normalize undefined -> null for optional fields
-      ageStartedSmoking: insertSurvey.ageStartedSmoking ?? null,
-      tobaccoType: insertSurvey.tobaccoType ?? null,
-      cigarettesPerDay: insertSurvey.cigarettesPerDay ?? null,
-      smokingFrequency: insertSurvey.smokingFrequency ?? null,
-      firstCigaretteTiming: insertSurvey.firstCigaretteTiming ?? null,
-      smokesIndoors: insertSurvey.smokesIndoors ?? null,
-      quitAttempts: insertSurvey.quitAttempts ?? null,
-      longestQuitPeriod: insertSurvey.longestQuitPeriod ?? null,
-      reasonStarted: insertSurvey.reasonStarted ?? null,
-      reasonStartedOther: insertSurvey.reasonStartedOther ?? null,
-      considersAddicted: insertSurvey.considersAddicted ?? null,
-      diseasesKnown: Array.isArray(insertSurvey.diseasesKnown)
-        ? insertSurvey.diseasesKnown
+      // Handle array fields - ensure diseasesKnown is properly formatted
+      diseasesKnown: Array.isArray(insertSurvey.diseasesKnown) 
+        ? insertSurvey.diseasesKnown 
         : [],
-      diseasesKnownOther: insertSurvey.diseasesKnownOther ?? null,
-      consideringQuitting: insertSurvey.consideringQuitting ?? null,
-      quitBarrier: insertSurvey.quitBarrier ?? null,
-      quitBarrierOther: insertSurvey.quitBarrierOther ?? null,
-      preferredQuitMethod: insertSurvey.preferredQuitMethod ?? null,
-      interestedInProgram: insertSurvey.interestedInProgram ?? null,
-      timeSinceQuit: insertSurvey.timeSinceQuit ?? null,
-      quitReason: insertSurvey.quitReason ?? null,
-      quitReasonOther: insertSurvey.quitReasonOther ?? null,
-      quitDifficulty: insertSurvey.quitDifficulty ?? null,
-      experiencedRelapse: insertSurvey.experiencedRelapse ?? null,
-      adviceForSmokers: insertSurvey.adviceForSmokers ?? null,
-      opinionOnCampaigns: insertSurvey.opinionOnCampaigns ?? null,
-      suggestionsForHelp: insertSurvey.suggestionsForHelp ?? null,
     };
 
-
-    const columns = Object.keys(survey);
-    const placeholders = columns.map(() => "?").join(", ");
-    const values = Object.values(survey).map(v =>
-      v instanceof Date
-        ? v.toISOString()
-        : Array.isArray(v)
-          ? JSON.stringify(v)
-          : v
-    );
-
-    await this.db.run(
-      `INSERT INTO surveys (${columns.join(", ")}) VALUES (${placeholders})`,
-      values
-    );
+    const [survey] = await this.db
+      .insert(surveys)
+      .values(surveyData)
+      .returning();
 
     return survey;
   }
 
   async getAllSurveys(): Promise<Survey[]> {
-    const rows = await this.db.all<Survey[]>(
-      "SELECT * FROM surveys ORDER BY datetime(createdAt) DESC"
-    );
-    return rows.map((r: any) => ({
-      ...r,
-      createdAt: new Date(r.createdAt),
-      diseasesKnown: r.diseasesKnown ? JSON.parse(r.diseasesKnown) : [],
-    }));
+    const allSurveys = await this.db
+      .select()
+      .from(surveys)
+      .orderBy(desc(surveys.createdAt));
+
+    return allSurveys;
   }
 
   async getSurveyById(id: string): Promise<Survey | undefined> {
-    const row = await this.db.get<Survey>(
-      "SELECT * FROM surveys WHERE id = ?",
-      [id]
-    );
-    return row
-      ? {
-        ...row,
-        createdAt: new Date(row.createdAt),
-        diseasesKnown: typeof row.diseasesKnown === "string"
-          ? JSON.parse(row.diseasesKnown)
-          : Array.isArray(row.diseasesKnown)
-            ? row.diseasesKnown
-            : [],
-      }
-      : undefined;
+    const [survey] = await this.db
+      .select()
+      .from(surveys)
+      .where(eq(surveys.id, id))
+      .limit(1);
+
+    return survey || undefined;
   }
 }
 
-export const storage = new SQLiteStorage();
+// You'll need to provide your PostgreSQL connection string
+// Example: "postgres://username:password@localhost:5432/database_name"
+export const storage = new PostgresStorage(process.env.DATABASE_URL || "postgresql://survey_b3fd_user:KqtqJfHUfPvTMUPZIKvNDGobCaDetodC@dpg-d3mlo2uuk2gs73ek32ug-a.oregon-postgres.render.com/survey_b3fd?ssl=true");
